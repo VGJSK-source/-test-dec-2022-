@@ -1,0 +1,2 @@
+mkdir terraform-lambda
+cd terraform-lambda
