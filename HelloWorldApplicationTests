@@ -1,0 +1,36 @@
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.testcontainers.containers.MySQLContainer;
+import org.testcontainers.junit.jupiter.Container;
+import org.testcontainers.junit.jupiter.Testcontainers;
+
+import static org.junit.Assert.assertEquals;
+
+@Testcontainers
+@SpringBootTest
+public class HelloWorldApplicationTests {
+
+    @Container
+    public static MySQLContainer<?> mysqlContainer = new MySQLContainer<>("mysql:latest");
+
+    @Autowired
+    private YourRepository yourRepository;
+
+    @Test
+    public void testHelloWorld() {
+        // Assuming yourRepository is a Spring Data repository for your entity
+        
+        // Insert test data
+        YourEntity entity = new YourEntity();
+        entity.setName("Hello World");
+        yourRepository.save(entity);
+        
+        // Retrieve data
+        YourEntity retrievedEntity = yourRepository.findByName("Hello World");
+        
+        // Verify the data
+        assertEquals("Hello World", retrievedEntity.getName());
+    }
+}
