@@ -1,0 +1,11 @@
+import org.junit.ClassRule;
+import org.junit.Test;
+import org.testcontainers.containers.MySQLContainer;
+
+public class HelloWorldApplicationTests {
+    @ClassRule
+    public static MySQLContainer<?> mysqlContainer = new MySQLContainer<>("mysql:latest");
+    
+    // Test methods will be added here
+    <------------------------------------------------------------->
+}
